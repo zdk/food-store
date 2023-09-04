@@ -4,11 +4,13 @@ import "testing"
 
 func TestCalculatePrice(t *testing.T) {
 	calculator := Calculator{}
-
-	result := calculator.CalculatePrice()
-	expectedPrice := 0.0
-
-	if result != expectedPrice {
-		t.Errorf("Expected price: %v, got: %v", expectedPrice, result)
+	order := map[string]int{
+			"Red": 1,
+			"Green": 1,
+	}
+	result := calculator.CalculatePrice(order)
+	expected := 90.0
+	if result != expected {
+		t.Errorf("Result: %f, Expected: %f", result, expected)
 	}
 }
