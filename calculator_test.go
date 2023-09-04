@@ -14,7 +14,8 @@ func TestCalculatePrice(t *testing.T) {
 		{map[string]int{"Red": 1, "Green": 1}, true, 81},
 		{map[string]int{"Orange": 2}, false, 228},
 		{map[string]int{"Orange": 3}, false, 342},
-		//{map[string]int{"Orange": 2}, true, 205.2},
+		{map[string]int{"Pink": 2}, false, 152},
+		{map[string]int{"Green": 2}, false, 76},
 	}
 
 	for _, test := range tests {
