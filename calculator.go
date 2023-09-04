@@ -21,5 +21,10 @@ func (c *Calculator) CalculatePrice(order map[string]int, hasMemberCard bool) fl
 		total += price * float64(order[color])
 	}
 
+	// Apply member card discount
+	if hasMemberCard {
+		total *= 0.9
+	}
+
 	return total
 }
