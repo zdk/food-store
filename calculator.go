@@ -1,9 +1,10 @@
 package main
 
-import (
-	"fmt"
-)
+type Calculator struct{}
 
-func main() {
-	fmt.Println("Hello, calculator!")
+func (c *Calculator) CalculatePrice() float64 {
+	// Calculate the total price
+	total := 50.0
+	return total
 }
+
