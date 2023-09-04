@@ -2,7 +2,7 @@ package main
 
 type Calculator struct{}
 
-func (c *Calculator) CalculatePrice(order map[string]int) float64 {
+func (c *Calculator) CalculatePrice(order map[string]int, hasMemberCard bool) float64 {
 
 	// Define set_prices for each set
 	set_prices := map[string]float64{

@@ -4,13 +4,20 @@ import "testing"
 
 func TestCalculatePrice(t *testing.T) {
 	calculator := Calculator{}
-	order := map[string]int{
-			"Red": 1,
-			"Green": 1,
+
+	tests := []struct {
+		order         map[string]int
+		hasMemberCard bool
+		expectedPrice float64
+	}{
+		{map[string]int{"Red": 1, "Green": 1}, false, 90},
+		{map[string]int{"Red": 1, "Green": 1}, true, 81},
 	}
-	result := calculator.CalculatePrice(order)
-	expected := 90.0
-	if result != expected {
-		t.Errorf("Result: %f, Expected: %f", result, expected)
+
+	for _, test := range tests {
+		result := calculator.CalculatePrice(test.order, test.hasMemberCard)
+		if result != test.expectedPrice {
+			t.Errorf("Expected price: %v, got: %v", test.expectedPrice, result)
+		}
 	}
 }
