@@ -1,5 +1,7 @@
 # Food Store Calculator
+[![codecov](https://codecov.io/gh/zdk/food-store/graph/badge.svg?token=sMfXlSSw6m)](https://codecov.io/gh/zdk/food-store)
 
+# Overview
 The food store menu calculator
 
 # Spec
