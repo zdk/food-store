@@ -4,6 +4,14 @@
 # Overview
 The food store menu calculator
 
+# Usage
+
+	calculator := Calculator{}
+	order := map[string]int{"Red": 1, "Green": 1}
+	hasMemberCard := true
+
+	total := calculator.CalculatePrice(order, hasMemberCard)
+
 # Spec
 
 - This food store only have 7 items in menu:
