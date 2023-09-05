@@ -2,12 +2,6 @@ package main
 
 const memberDiscount = 0.9
 
-type Item struct {
-	Name     string
-	Price    float64
-	Discount float64
-}
-
 var itemsMap = map[string]Item{
 	"Red":    {Name: "Red", Price: 50, Discount: 0},
 	"Green":  {Name: "Green", Price: 40, Discount: 0.95},
@@ -21,26 +15,31 @@ var itemsMap = map[string]Item{
 // orderItems is now a map of item names to quantities
 type OrderItems map[string]int
 
+type Item struct {
+	Name     string
+	Price    float64
+	Discount float64
+}
+
+func (i *Item) DiscountedPrice(quantity int) float64 {
+	if i.Discount > 0 && quantity > 1 {
+		return i.Price * i.Discount * float64(quantity)
+	}
+	return i.Price * float64(quantity)
+}
+
 type Calculator struct{}
 
 func (c *Calculator) CalculatePrice(orderItems OrderItems, hasMemberCard bool) float64 {
-	// Calculate the total price
 	total := 0.0
-
 	for itemName, quantity := range orderItems {
 		if item, exists := itemsMap[itemName]; exists {
-			if item.Discount > 0 && quantity > 1 {
-				total += item.Price * float64(quantity) * item.Discount
-			} else {
-				total += item.Price * float64(quantity)
-			}
+			total += item.DiscountedPrice(quantity)
 		}
 	}
-
 	// Apply member card discount
 	if hasMemberCard {
 		total *= memberDiscount
 	}
-
 	return total
 }
