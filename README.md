@@ -1,16 +1,34 @@
-# Food Store Calculator
+# Food Store Order Price Calculator
 [![codecov](https://codecov.io/gh/zdk/food-store/graph/badge.svg?token=sMfXlSSw6m)](https://codecov.io/gh/zdk/food-store)
 
-# Overview
-The food store menu calculator
+# Description
+This package provides functionality to calculate the total cost of an order. It takes into account item-specific discounts and an optional membership discount.
+
+# Structures
+
+`Item`: Defines properties of a purchasable item. Includes the name, base price, and any discount.
+
+`OrderItems`: A map that connects item names to their respective quantities in an order.
+
+`Calculator`: Can be used to calculate the price of an order.
 
 # Usage
 
-	calculator := Calculator{}
-	order := map[string]int{"Red": 1, "Green": 1}
-	hasMemberCard := true
+  ```
+  order := OrderItems{
+		"Red":    2,
+		"Green":  3,
+		"Pink":   1
+		"Orange": 2,
+  }
 
-	total := calculator.CalculatePrice(order, hasMemberCard)
+  // Create a new Calculator
+  calculator := &Calculator{}
+
+  // Calculate the price for a non-member and then for a member
+  nonMemberPrice := calculator.CalculatePrice(order, false)
+  memberPrice := calculator.CalculatePrice(order, true)
+```
 
 # Spec
 

@@ -5,7 +5,7 @@ import (
 )
 
 func TestCalculatePrice(t *testing.T) {
-	calc := Calculator{}
+	calc := &Calculator{}
 
 	tests := []struct {
 		name          string
