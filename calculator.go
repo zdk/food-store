@@ -25,17 +25,9 @@ type OrderItem struct {
 
 type Calculator struct{}
 
-func (c *Calculator) CalculatePrice(order map[string]int, hasMemberCard bool) float64 {
+func (c *Calculator) CalculatePrice(orderItems []OrderItem, hasMemberCard bool) float64 {
 	// Calculate the total price
 	total := 0.0
-	for color, price := range setPrices {
-		discount, ok := specialDiscounts[color]
-		if ok && order[color] > 1 {
-			total += price * float64(order[color]) * discount
-		} else {
-			total += price * float64(order[color])
-		}
-	}
 
 	// Apply member card discount
 	if hasMemberCard {
