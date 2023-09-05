@@ -1,6 +1,8 @@
 // Package main provides functionality to calculate the total cost of an order
 package main
 
+import "fmt"
+
 // memberDiscount represents the percentage discount for members.
 const memberDiscount = 0.9
 
@@ -37,16 +39,18 @@ func (i *Item) DiscountedPrice(quantity int) float64 {
 type Calculator struct{}
 
 // CalculatePrice computes the total cost of an order, considering any discounts
-func (c *Calculator) CalculatePrice(orderItems OrderItems, hasMemberCard bool) float64 {
+func (c *Calculator) CalculatePrice(orderItems OrderItems, hasMemberCard bool) (float64, error) {
 	total := 0.0
 	for itemName, quantity := range orderItems {
-		if item, exists := itemsMap[itemName]; exists {
-			total += item.DiscountedPrice(quantity)
+		item, exists := itemsMap[itemName]
+		if !exists {
+			return 0, fmt.Errorf("item not found: %s", itemName)
 		}
+		total += item.DiscountedPrice(quantity)
 	}
 	// Apply member card discount if applicable
 	if hasMemberCard {
 		total *= memberDiscount
 	}
-	return total
+	return total, nil
 }

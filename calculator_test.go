@@ -5,7 +5,7 @@ import (
 )
 
 func TestCalculatePrice(t *testing.T) {
-	calc := &Calculator{}
+	calculator := &Calculator{}
 
 	tests := []struct {
 		name          string
@@ -61,10 +61,30 @@ func TestCalculatePrice(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := calc.CalculatePrice(tt.orderItems, tt.hasMemberCard)
+			got, _ := calculator.CalculatePrice(tt.orderItems, tt.hasMemberCard)
 			if got != tt.expected {
 				t.Errorf("Expected %f, but got %f", tt.expected, got)
 			}
 		})
+	}
+}
+
+func TestCalculatePrice_ErrorCase(t *testing.T) {
+	calculator := &Calculator{}
+
+	// Create a test order with an unknown item
+	order := OrderItems{
+		"UnknownItem": 2,
+	}
+
+	_, err := calculator.CalculatePrice(order, false)
+	if err == nil {
+		t.Errorf("Expected an error for unknown item, got none")
+		return
+	}
+
+	expectedError := "item not found: UnknownItem"
+	if err.Error() != expectedError {
+		t.Errorf("Expected error: %s, got: %s", expectedError, err.Error())
 	}
 }
