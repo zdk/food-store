@@ -18,14 +18,12 @@ var specialDiscounts = map[string]float64{
 	"Green":  0.95,
 }
 
-type OrderItem struct {
-	Name     string
-	Quantity int
-}
+// orderItems is now a map of item names to quantities
+type OrderItems map[string]int
 
 type Calculator struct{}
 
-func (c *Calculator) CalculatePrice(orderItems []OrderItem, hasMemberCard bool) float64 {
+func (c *Calculator) CalculatePrice(orderItems OrderItems, hasMemberCard bool) float64 {
 	// Calculate the total price
 	total := 0.0
 

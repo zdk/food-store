@@ -10,14 +10,14 @@ func TestCalculatePrice(t *testing.T) {
 
 	tests := []struct {
 		name          string
-		orderItems    []OrderItem
+		orderItems    OrderItems
 		hasMemberCard bool
 		expected      float64
 	}{
 		{
 			name: "Test single item without discount",
-			orderItems: []OrderItem{
-				{Name: "Red", Quantity: 1},
+			orderItems: OrderItems{
+				"Red": 1,
 			},
 			hasMemberCard: false,
 			expected:      50.0,
