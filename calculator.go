@@ -18,6 +18,11 @@ var specialDiscounts = map[string]float64{
 	"Green":  0.95,
 }
 
+type OrderItem struct {
+	Name     string
+	Quantity int
+}
+
 type Calculator struct{}
 
 func (c *Calculator) CalculatePrice(order map[string]int, hasMemberCard bool) float64 {
