@@ -4,7 +4,7 @@
 # Description
 This package provides functionality to calculate the total cost of an order. It takes into account item-specific discounts and an optional membership discount.
 
-# Structures
+# Structure
 
 `Item`: Defines properties of a purchasable item. Includes the name, base price, and any discount.
 
@@ -14,7 +14,7 @@ This package provides functionality to calculate the total cost of an order. It 
 
 # Usage
 
-  ```
+  ```go
   order := OrderItems{
 		"Red":    2,
 		"Green":  3,
@@ -26,8 +26,56 @@ This package provides functionality to calculate the total cost of an order. It 
   calculator := &Calculator{}
 
   // Calculate the price for a non-member and then for a member
-  nonMemberPrice := calculator.CalculatePrice(order, false)
-  memberPrice := calculator.CalculatePrice(order, true)
+  nonMemberPrice, err := calculator.CalculatePrice(order, false)
+  memberPrice, err := calculator.CalculatePrice(order, true)
+```
+
+# Examples
+
+## 1: Basic order without member card
+```go
+	order1 := OrderItems{
+		"Red":     2,
+		"Green":   3,
+		"Purple":  1,
+	}
+	price1, err := calculator.CalculatePrice(order1, false)
+	if err != nil {
+		fmt.Printf("Error calculating price: %s\n", err)
+	} else {
+		fmt.Printf("Total price for order 1: %.2f\n", price1)
+	}
+```
+
+## 2: Order with member card and item discounts
+
+```go
+	order2 := OrderItems{
+		"Green":   3,  // This will get an item discount
+		"Pink":    2,  // This will get an item discount
+		"Orange":  1,
+	}
+	price2, err := calculator.CalculatePrice(order2, true) // Note the member card flag set to true
+	if err != nil {
+		fmt.Printf("Error calculating price: %s\n", err)
+	} else {
+		fmt.Printf("Total price for order 2 (with member card): %.2f\n", price2)
+	}
+```
+
+## 3: Order with a non-existent item
+
+```go
+	order3 := OrderItems{
+		"Green":    2,
+		"Magenta":  3,  // This item doesn't exist in the itemsMap
+	}
+	price3, err := calculator.CalculatePrice(order3, false)
+	if err != nil {
+		fmt.Printf("Error calculating price: %s\n", err)
+	} else {
+		fmt.Printf("Total price for order 3: %.2f\n", price3)
+	}
 ```
 
 # Spec
