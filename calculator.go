@@ -8,13 +8,13 @@ const memberDiscount = 0.9
 
 // itemsMap is a map of available items in the store. The key is the name of the item.
 var itemsMap = map[string]Item{
-	"Red":    {Name: "Red", Price: 50, Discount: 0},
-	"Green":  {Name: "Green", Price: 40, Discount: 0.95},
-	"Blue":   {Name: "Blue", Price: 30, Discount: 0},
-	"Yellow": {Name: "Yellow", Price: 50, Discount: 0},
-	"Pink":   {Name: "Pink", Price: 80, Discount: 0.95},
-	"Purple": {Name: "Purple", Price: 90, Discount: 0},
-	"Orange": {Name: "Orange", Price: 120, Discount: 0.95},
+	"Red":    {Price: 50, Discount: 0},
+	"Green":  {Price: 40, Discount: 0.95},
+	"Blue":   {Price: 30, Discount: 0},
+	"Yellow": {Price: 50, Discount: 0},
+	"Pink":   {Price: 80, Discount: 0.95},
+	"Purple": {Price: 90, Discount: 0},
+	"Orange": {Price: 120, Discount: 0.95},
 }
 
 // OrderItems is a map of item names to quantities
